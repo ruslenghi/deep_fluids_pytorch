@@ -64,6 +64,9 @@ class CNN(nn.Module):
         self.acc_history = []
         self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
         
+        self.pre_reshape_dim = 128*8*6 #Number of channels times width times height
+        self.Linear_Layer = nn.Linear(3, self.pre_reshape_dim)
+        
         #First big block
         self.conv1_1 = nn.Conv2d(128, 128, 3, padding=1)
         self.conv1_2 = nn.Conv2d(128, 128, 3, padding=1)
@@ -106,6 +109,9 @@ class CNN(nn.Module):
     def forward(self, x):
 
         x = x.to(self.device)
+        x = self.Linear_Layer(x)
+        x = torch.reshape(x, (1, 128, 8, 6))
+
         x0 = x
         upsampler = nn.Upsample(scale_factor=2, mode='nearest')
 
@@ -179,18 +185,11 @@ class CNN(nn.Module):
         c = 0 #This is just an auxiliary variable to compute the avg_loss over n_avg steps
         for i in range(self.epochs): #It's not actually the number of epochs, it's the number of images that the CNN will see in total
             
-            #print('This is i: ', i)
+            print('This is i: ', i)
             r_n = np.random.randint(10) #Extract one image from the dataset randomly (the dataset contains 10 images as of now)
 
             self.optimizer.zero_grad()
             input_ = torch.Tensor(physical_info[r_n])
-
-            #The 3-d array containing phys info is projected to a 6144 (= 128*8*6) dimensional array
-            pre_reshape_dim = 128*8*6 #Number of channels times width times height
-            Project =  nn.Linear(3, pre_reshape_dim)
-            input_ = Project(input_)
-            input_ = torch.reshape(input_, (1, 128, 8, 6))
-
             target = torch.Tensor(smoke_images[r_n])
             target = torch.reshape(target, (1,2,128,96))
             target = target.to(self.device)
@@ -207,17 +206,17 @@ class CNN(nn.Module):
         plt.plot(x, losses)
         plt.savefig('result/loss.png')
 
-my_cnn = CNN(0.0001, 50000, 1) #The 50000 makes it so that we present the 50000 images randomly sampled from the 10 images in the dataset
+my_cnn = CNN(0.0001, 10000, 1) #The 50000 makes it so that we present the 50000 images randomly sampled from the 10 images in the dataset
 my_cnn._train()
 
 for k in range(len(smoke_images)):
     v_ = torch.Tensor(physical_info[k])
-    pre_reshape_dim = 128*8*6 #Number of channels times width times height
+    '''pre_reshape_dim = 128*8*6 #Number of channels times width times height
     Project =  nn.Linear(3, pre_reshape_dim)
     v_projected = Project(v_) #This is the projected vector that we need to reshape
-    v_projected = torch.reshape(v_projected, (1, 128, 8, 6)) #This is the reshaped set of 'images' that we will now feed to the CNN
+    v_projected = torch.reshape(v_projected, (1, 128, 8, 6)) #This is the reshaped set of 'images' that we will now feed to the CNN'''
 
-    my_result = my_cnn.forward(v_projected)
+    my_result = my_cnn.forward(v_)
     my_result = torch.reshape(my_result, (128, 96, 2))
 
     to_show_gt = np.zeros((128, 96, 1))
