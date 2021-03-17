@@ -207,7 +207,7 @@ class CNN(nn.Module):
         plt.plot(x, losses)
         plt.savefig('result/loss.png')
 
-my_cnn = CNN(0.0001, 5, 1)
+my_cnn = CNN(0.0001, 50000, 1) #The 50000 makes it so that we present the 50000 images randomly sampled from the 10 images in the dataset
 my_cnn._train()
 
 for k in range(len(smoke_images)):
