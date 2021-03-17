@@ -223,7 +223,7 @@ v_projected = torch.reshape(v_projected, (1, 128, 8, 6)) #This is the reshaped s
 #num_images_shown = 100000
 #batch_size = 1 (Not really, if I wrote 10 it would still use batch_size 1 as of now)
 
-my_cnn = CNN(0.0001, 50, 1)
+my_cnn = CNN(0.0001, 50000, 1)
 my_cnn._train()
 my_result = my_cnn.forward(v_projected)
 my_result = torch.reshape(my_result, (128, 96, 2))
