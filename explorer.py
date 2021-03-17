@@ -21,48 +21,48 @@ from torchvision.transforms import ToTensor
 import numpy as np
 import matplotlib.pyplot as plt
 import glob
+import os
+import shutil
 
 #I load all the physical info and rb images in two lists
 
 physical_info = []
 smoke_images = []
 
-for np_name in glob.glob('./data/reduced/v/*'):
+for np_name in glob.glob('./data/super_reduced/v/*'):
     a = np.load(np_name)
     physical_info.append(a['y'])
     smoke_images.append(a['x'])
 
-print('done')
-
 #ADVICE:
 
-#Try to train the cnn on a dataset containig 10/100 images
+#Try to train the cnn on a dataset containig 10/100 images (done 10, 100 to do)
 #Implement the batch system
-#Use lrelu insread of relu
+#Use lrelu insread of relu (done)
 
 #THINGS TO BE ADJUSTED:
 
 #Adjust the learning rate
-#Maybe use the dim 8 batches? 
-
-#Use lrelu instead of relu
 #Use the gradient loss
 #Use the curl
 #Implement Simon's loss fctn
 #Find a better way to visualize the images
 
-'''How does the testing procedure work?'''
-'''It is reconstruction of the image, the 2 channels should be the rb channels, right?'''
 '''Find a better way to visualize the images'''
+
+#I create a folder to store some predictions that the CNN is going to make
+dir_ = 'temp'
+if os.path.exists(dir_):
+    shutil.rmtree(dir_)
+# Create target directory & all intermediate directories if don't exists
+os.makedirs(dir_)
 
 class CNN(nn.Module):
     def __init__(self, lr, epochs, batch_size):
-        super(CNN, self).__init__()#When you use inhertince in Python you have to call super
+        super(CNN, self).__init__()
         self.epochs = epochs
         self.lr = lr
         self.batch_size = batch_size
-        self.loss_history = [] #This has to be an array, and will be useful when we plot our data
-        self.acc_history = []
         self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
         
         #First big block
@@ -172,7 +172,7 @@ class CNN(nn.Module):
         return out
     
     def _train(self):
-        self.train()#This tells pytorch that we are in training mode basically
+        self.train()#This tells pytorch that we are in training mode
 
         losses = []
         x = []
@@ -181,11 +181,10 @@ class CNN(nn.Module):
         for i in range(self.epochs): #It's not actually the number of epochs, it's the number of images that the CNN will see in total
             
             #print('This is i: ', i)
-            r_n = np.random.randint(2000) #Extract one image from the dataset randomly
+            r_n = np.random.randint(10) #Extract one image from the dataset randomly (the 10 is there because we have 10 images at the moment)
 
             self.optimizer.zero_grad()
             input_ = torch.Tensor(physical_info[r_n])
-
 
             #The 3-d array containing phys info is projected to a 6144 dimensional array
             pre_reshape_dim = 128*8*6 #Number of channels times width times height
@@ -207,41 +206,40 @@ class CNN(nn.Module):
             self.optimizer.step()
 
         plt.plot(x, losses)
-        plt.savefig('../loss.png')
+        plt.savefig('temp/loss.png')
 
-#I load one image to see if the CNN has learned enough to reconstruct it at least roughly
-data = np.load('./data/reduced/v/5_0_64.npz')
-v_ = [0.35, 0.04, 64] #This is data['y'] (Physical info)
-v_ = torch.Tensor(v_)
-pre_reshape_dim = 128*8*6 #Number of channels times width times height
-Project =  nn.Linear(3, pre_reshape_dim)
-v_projected = Project(v_) #This is the projected vector that we need to reshape
-v_projected = torch.reshape(v_projected, (1, 128, 8, 6)) #This is the reshaped set of 'images' that we will now feed to the CNN
-
-
-#lr = 0.0001 (FIXED)
-#num_images_shown = 100000
-#batch_size = 1 (Not really, if I wrote 10 it would still use batch_size 1 as of now)
-
-my_cnn = CNN(0.0001, 50000, 1)
+my_cnn = CNN(0.0001, 50000, 1) #I Show each image on average 5000 times to the CNN. 50000 = 10 * 5000
 my_cnn._train()
-my_result = my_cnn.forward(v_projected)
-my_result = torch.reshape(my_result, (128, 96, 2))
 
-#This enables me to visualize the GROUNDTRUTH image that the cnn should reconstruct
-to_show_gt = np.zeros((128, 96, 1))
-to_show_reconstructed = np.zeros((128, 96, 1))
+#Here I check the quality of the reconstruction of the 10 training images
+#I save the reconstructed images, as well as their groundtruth in a folder
+#I also save the loss graph in the said folder
+for k in range(len(smoke_images)):
+    v_ = torch.Tensor(physical_info[k])
+    pre_reshape_dim = 128*8*6 #Number of channels times width times height
+    Project =  nn.Linear(3, pre_reshape_dim)
+    v_projected = Project(v_) #This is the projected vector that we need to reshape
+    v_projected = torch.reshape(v_projected, (1, 128, 8, 6)) #This is the reshaped set of (8,6) 'images' that we will now feed to the CNN
 
-my_result = my_result.cpu()
-x_r = my_result.detach().numpy()
-x_gt = np.array(data['x'])
+    my_result = my_cnn.forward(v_projected)
+    my_result = torch.reshape(my_result, (128, 96, 2))
 
-for i in range(128):
-    for j in range(96):
-        to_show_gt[127-i][j] = 5*x_gt[i][j][1] + 3*x_gt[i][j][0]
-        to_show_reconstructed[127-i][j] = 5*x_r[i][j][1] + 3*x_r[i][j][0]
+    to_show_gt = np.zeros((128, 96, 1))
+    to_show_reconstructed = np.zeros((128, 96, 1))
 
-plt.imshow(to_show_gt, cmap='gray', vmin=-18, vmax=27)
-plt.savefig('../train_gt_image.png')
-plt.imshow(to_show_reconstructed, cmap='gray', vmin=-18, vmax=27)
-plt.savefig('../reconstructed_image.png')
+    my_result = my_result.cpu()
+    x_r = my_result.detach().numpy()
+    x_gt = np.array(smoke_images[k])
+
+    for i in range(128):
+        for j in range(96):
+            to_show_gt[127-i][j] = 5*x_gt[i][j][1] + 3*x_gt[i][j][0]
+            to_show_reconstructed[127-i][j] = 5*x_r[i][j][1] + 3*x_r[i][j][0]
+
+    gt = 'temp/train_gt_image_' + str(k) + '_gt.png'
+    rec = 'temp/reconstructed_image_' + str(k) + '_.png'
+
+    plt.imshow(to_show_gt, cmap='gray', vmin=-18, vmax=27)
+    plt.savefig('temp/train_gt_image_' + str(k) + '_gt.png')
+    plt.imshow(to_show_reconstructed, cmap='gray', vmin=-18, vmax=27)
+    plt.savefig('temp/reconstructed_image_' + str(k) + '_.png')
