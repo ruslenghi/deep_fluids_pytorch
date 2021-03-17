@@ -226,7 +226,8 @@ for k in range(len(smoke_images)):
     my_result = my_result.cpu()
     x_r = my_result.detach().numpy()
     x_gt = np.array(smoke_images[k])
-
+    
+    #This is a dirty way of showing images 
     for i in range(128):
         for j in range(96):
             to_show_gt[127-i][j] = 5*x_gt[i][j][1] + 3*x_gt[i][j][0]
