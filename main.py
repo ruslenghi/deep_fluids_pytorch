@@ -25,11 +25,6 @@ import os
 import shutil
 from torch.utils.data import TensorDataset, DataLoader
 
-#ADVICE:
-
-#Try to train the cnn on a dataset containig 10/100 images (done 10 , to do 100)
-#Implement the batch system (done, hope it's right)
-
 #THINGS TO BE ADJUSTED:
 
 #Adjust the learning rate
@@ -40,12 +35,10 @@ from torch.utils.data import TensorDataset, DataLoader
 
 class CNN(nn.Module):
     def __init__(self, lr, epochs, batch_size):
-        super(CNN, self).__init__()#When you use inhertince in Python you have to call super
+        super(CNN, self).__init__()
         self.epochs = epochs
         self.lr = lr
         self.batch_size = batch_size
-        self.loss_history = [] #This has to be an array, and will be useful when we plot our data
-        self.acc_history = []
         self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
         self.pre_reshape_dim = 128*8*6
 
@@ -109,8 +102,6 @@ class CNN(nn.Module):
 
         my_dataset = TensorDataset(tensor_x,tensor_y) # create your datset
         self.train_data_loader = DataLoader(my_dataset,  batch_size=self.batch_size, shuffle=True) # create your dataloader
-
-        print('It worked!')
 
 
     def forward(self, x):
@@ -190,7 +181,7 @@ class CNN(nn.Module):
         losses = []
         x = []
         for i in range(self.epochs):
-            #print('This is i!!!: ', i)
+            #print('This is i: ', i)
             c = 0
             x.append(i)
             for (input, label) in self.train_data_loader:
@@ -211,8 +202,8 @@ class CNN(nn.Module):
         plt.plot(x, losses)
         plt.savefig('result/loss.png')
 
-#I create a folder to store some results of reconstruction of randomly
-#selected images from the training set
+#I create a folder called result to store some results of reconstruction
+#of randomly selected images from the training set
 dir_ = 'result'
 if os.path.exists(dir_):
     shutil.rmtree(dir_)
