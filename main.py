@@ -25,13 +25,22 @@ import os
 import shutil
 from torch.utils.data import TensorDataset, DataLoader
 
+#TO TRY
+
+#See how the CNN deals with the full dataset
+#Try using size 32 batches
+
 #THINGS TO BE ADJUSTED:
 
+#Understand why the cross artifact appears and adjust it 
+#it looks like the CNN reconstructs 4 pieces of the image 
+#separately and then it pastes them one beside the other
+
+#Print images correctly
 #Adjust the learning rate
 #Use the gradient loss
 #Use the curl
 #Implement Simon's loss fctn
-#Find a better way to visualize the images
 
 class CNN(nn.Module):
     def __init__(self, lr, epochs, batch_size):
@@ -102,6 +111,8 @@ class CNN(nn.Module):
 
         my_dataset = TensorDataset(tensor_x,tensor_y) # create your datset
         self.train_data_loader = DataLoader(my_dataset,  batch_size=self.batch_size, shuffle=True) # create your dataloader
+
+        print('It worked!')
 
 
     def forward(self, x):
@@ -190,8 +201,6 @@ class CNN(nn.Module):
                 label = label.to(self.device)
                 prediction = self.forward(input)
                 label = torch.reshape(label, (-1, 2, 128, 96))
-                #print(label.shape)
-                #print(prediction.shape)
                 loss = self.loss(prediction, label)
                 c += loss.item()
                 loss.backward(retain_graph=True)
@@ -202,15 +211,15 @@ class CNN(nn.Module):
         plt.plot(x, losses)
         plt.savefig('result/loss.png')
 
-#I create a folder called result to store some results of reconstruction
-#of randomly selected images from the training set
+#I create a folder to store some results of reconstruction of randomly
+#selected images from the training set
 dir_ = 'result'
 if os.path.exists(dir_):
     shutil.rmtree(dir_)
 # Create target directory & all intermediate directories if don't exists
 os.makedirs(dir_)
 
-my_cnn = CNN(0.0001, 400, 8)
+my_cnn = CNN(lr=0.0001, epochs=400, batch_size=8)
 my_cnn._train()
 
 for k in range(20):
