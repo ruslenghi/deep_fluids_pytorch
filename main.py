@@ -28,18 +28,6 @@ from typing import List, Dict
 from pathlib import Path
 import pickle
 
-
-#IDEAS
-
-#Maybe the learning rate is not fine?
-
-#QUESTIONS:
-
-#How does Byungsoo obtain the gt images? The gt image is just one image
-#so how can I obtain it from the .npz files? Maybe it is the case that I should
-#just reconstruct a combined version of the v_x and v_y fields? Or use these as 
-#2 channels of an rgb image?
-
 #ADVICE:
 
 #Implement the epochs saving system of the images
@@ -56,15 +44,17 @@ import pickle
 #See how the CNN deals with the full dataset
 #Try using size 32 batches
 
+#TO DO
+
+#Make the code more general, especially the preprocessing
+#Make the code more modular
+#Make an online image printing system as Byungsoo's (say every 1000 training steps)
+#Implement the gradient loss as well as the curl
+#Implement the frequency loss
+
 #THINGS TO BE ADJUSTED:
 
-#Understand how the gt images are plotter in Byungsoo's code
-
-#Understand why the cross artifact appears and adjust it
-#it looks like the CNN reconstructs 4 pieces of the image 
-#separately and then it pastes them one beside the other
-
-#Is it normal that I get the chessboard artifact at first?
+#Understand how the gt images are plotted in Byungsoo's code
 
 #Solve teh "CHECKERBOARD PROBLEM"
 
