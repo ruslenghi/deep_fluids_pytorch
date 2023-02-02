@@ -70,7 +70,7 @@ Run the following line to reconstruct random dataset samples using the trained m
     
 ## Dataset
 
-In this repo a toy dataset called "super_reduced", which contains only 10 velocity fields, was loaded. Training the model for 240 epochs on this toy dataset using my Macbook Air 2021 takes around 3 minutes.
+In this repo a toy dataset called "super_reduced", which contains only 10 velocity fields, was loaded. Training the model for 240 epochs on this toy dataset using my Macbook Air 2021 takes around 3 minutes, and yields trustworthy reconstructions.
 
 The images and graphs shown in this README were however obtained by training the model on a dataset of 21000 velocity fields. 
 
