@@ -20,15 +20,15 @@ Up-scalings and convolutions are performed on the input vector *c* to reconstruc
 
 ## Qualitative Improvements
 
-In the first column Ground Truth (GT) fields are presented.
+In the 1st column Ground Truth (GT) fields are presented.
 
-In the second column Baseline reconstructions, obtained via the vanilla implementation of Deep Fluids, are shown.
+In the 2nd column Baseline reconstructions, obtained via the vanilla implementation of Deep Fluids, are shown.
 
-In the third column STL (Shift Towards Low) reconstrictions are visible. These are the reconstructions obtained via a technique previously used to improve the velocity fields reconstruction, which is described in detail at: https://deepai.org/publication/frequency-aware-reconstruction-of-fluid-simulations-with-generative-networks
+In the 3rd column STL (Shift Towards Low) reconstrictions are visible. These are the reconstructions obtained via a technique previously used to improve the velocity fields reconstruction, which is described in detail at: https://deepai.org/publication/frequency-aware-reconstruction-of-fluid-simulations-with-generative-networks
 
-In the fourth and fifth column my results are shown. In these cases the *c* vector was preprocessed via Positional Encoding (PE) combined with STL (fourth column) or Progressive Training (fifth column).
+In the 4th and 5th column my results are shown. In these cases the *c* vector was preprocessed via Positional Encoding (PE) combined with STL (fourth column) or Progressive Training (fifth column).
 
-It is clearly visible that Positional Encoding is a game changer, and that the reconstructed fields present much more details in the reconstructions presented in the last 2 columns, with the best results being those obtained via the combined use of Positional Encoding and Progressive Training.
+It is clearly visible that Positional Encoding is a game changer. The reconstructed fields of the 4th and 5th columns present much more details than both Baseline and STL, with the best results being those attained via the combined use of Positional Encoding and Progressive Training.
 
 <img src=./images/Mixed_Fields.png width="600" />
 
