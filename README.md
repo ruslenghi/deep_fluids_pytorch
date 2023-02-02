@@ -9,7 +9,9 @@ Major visual improvements are attained thanks to the use of Positional Encoding 
 The architecture's input consists of a vector *c* containing just three numbers:
 
 -The position of the fluid source on the x axis (the y position is kept fixed across the whole dataset)
+
 -The size of the source of fluid
+
 -The time elapsed since the source was activated
 
 Up-scalings and convolutions are performed on the input vector *c* to reconstruct the whole velocity field of the fluid. 
