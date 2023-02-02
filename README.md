@@ -1,14 +1,27 @@
-## Description
+## Overview
 
-In the present work we focus on enhancing the reconstruction of high frequency detail for velocity fields obtained via generative data driven fluid simulations. In particular we employ Progressive Training and Positional Encoding as methods to improve detail reconstruction. Both these techniques largely outperform the benchmark method we consider and can be combined to provide even better results. The observed quantitative improvement in frequency reconstruction is effectively reflected by a much larger amount of visual detail in the generated velocity fields.
+This project ports the existing Deep Fluids architecture: https://arxiv.org/abs/1806.02071 from Tensorflow to PyTorch, and focuses on improving the reconstruction of fine grain details of fluids' velocity fields. 
+
+Major visual improvements are attained thanks to the use of Positional Encoding and Progressive Training. The final results largely outperform, both quantitatively and qualitatively, previous approaches which aimed at enhancing the same architecture: https://deepai.org/publication/frequency-aware-reconstruction-of-fluid-simulations-with-generative-networks
+
+## Architecture
+
+The architecture's input consists of a vector *c* containing just three numbers:
+
+-The position of the fluid source on the x axis (the y position is kept fixed across the whole dataset)
+-The size of the source of fluid
+-The time elapsed since the source was activated
+
+Up-scalings and convolutions are performed on the input vector *c* to reconstruct the whole velocity field of the fluid. 
+The full CNN architecture structure is presented below.
 
 <img src=./images/CNN.png width="600" />
 
-test test test
+## Qualitative Improvements
 
 <img src=./images/Mixed_Fields.png width="600" />
 
-test test test
+## Quantitative Improvements
 
 <img src=./images/stats.PNG width="600" />
 
