@@ -32,11 +32,15 @@ In the 4th and 5th column my results are shown. In these cases the *c* vector wa
 
 It is clearly visible that Positional Encoding is a game changer. The reconstructed fields of the 4th and 5th columns present much more details than both Baseline and STL, with the best results being those attained via the combined use of Positional Encoding and Progressive Training.
 
+<p align="center">
 <img src=./images/Mixed_Fields.png width="600" />
+</p>
 
 ## Quantitative Improvements
 
+<p align="center">
 <img src=./images/stats.PNG width="600" />
+</p>
 
 ## Requirements
 
