@@ -18,4 +18,4 @@ Run the following line to install packages.
 
 ## Description
 
-<img src=./images/improved_results_2.PNG width="800" />
+<img src=./images/Mixed_Fields.png width="800" />
