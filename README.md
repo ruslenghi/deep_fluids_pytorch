@@ -1,3 +1,7 @@
+## Description
+
+<img src=./images/Mixed_Fields.png width="600" />
+
 ## Requirements
 
 This code is tested on Windows 10 with the following requirements:
@@ -15,7 +19,3 @@ Run the following line to install packages.
     python main.py my_model
     
     python print_fields.py my_model
-
-## Description
-
-<img src=./images/Mixed_Fields.png width="600" />
