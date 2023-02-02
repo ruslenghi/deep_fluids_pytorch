@@ -11,14 +11,7 @@ This code is tested on Windows 10 with the following requirements:
 
 Run the following line to install packages.
 
-    $ pip install --upgrade tensorflow==1.15 tqdm matplotlib Pillow imageio
-
-To install `mantaflow`, run:
-
-    $ git clone https://bitbucket.org/mantaflow/manta.git
-    $ git checkout 15eaf4
-    
-and follow the [instruction](http://mantaflow.com/install.html). Note that `numpy` cmake option should be set to enable support for numpy arrays. (i.e., `-DNUMPY='ON'`)
+    pip install --upgrade tensorflow==1.15 tqdm matplotlib Pillow imageio
 
 ## Usage
 
