@@ -52,15 +52,11 @@ On the right are displayed five histograms reporting the counts of different val
 
 ## Requirements
 
-This code is tested on Windows 10 with the following requirements:
-
-<!-- - [anaconda / python3.6](https://www.anaconda.com/download/) (run `conda install python=3.6` for the latest version.) -->
-- [TensorFlow 1.15](https://www.tensorflow.org/install/)
-- [mantaflow](http://mantaflow.com)
+This code is tested on Windows 10.
 
 Run the following line to install packages.
 
-    pip install --upgrade tensorflow==1.15 tqdm matplotlib Pillow imageio
+    pip install --upgrade torch numpy tqdm matplotlib Pillow imageio
 
 ## Usage
 
