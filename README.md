@@ -38,6 +38,10 @@ It is clearly visible that Positional Encoding is a game changer. The reconstruc
 
 ## Quantitative Improvements
 
+The curves in the graph on the left are associated with different architectures. Each curve represents the relative difference between the Discrete Fast Fourier Transform of the reconstructed fields and the ground truth one, averaged across the whole dataset, at different frequencies. As it is visible, Positional Encoding combined with Progressive Training is the approach which reduces the curve's area the most, bringing a reduction in covered area that is 4 times as large as that obtained with the previous appraoch (STL).
+
+On the right are displayed five histograms reporting the counts of different values for the log magnitude in frequency space. It can be observed that the statistics of the frequencies, for the dataset reconstructed via Positional Encoding + Progressive Training, is closer to the Ground Truth statistics as compared to previous approaches.
+
 <p align="center">
 <img src=./images/stats.PNG width="600" />
 </p>
