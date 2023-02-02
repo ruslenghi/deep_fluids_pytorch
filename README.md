@@ -1,12 +1,6 @@
 ## Description
 
-In the present work we focus on enhancing the reconstruction of high frequency detail for ve-
-locity fields obtained via generative data driven fluid simulations. In particular we employ Pro-
-gressive Training and Positional Encoding as methods to improve detail reconstruction. Both
-these techniques largely outperform the benchmark method we consider and can be combined
-to provide even better results. The observed quantitative improvement in frequency reconstruc-
-tion is effectively reflected by a much larger amount of visual detail in the generated velocity
-fields.
+In the present work we focus on enhancing the reconstruction of high frequency detail for velocity fields obtained via generative data driven fluid simulations. In particular we employ Progressive Training and Positional Encoding as methods to improve detail reconstruction. Both these techniques largely outperform the benchmark method we consider and can be combined to provide even better results. The observed quantitative improvement in frequency reconstruction is effectively reflected by a much larger amount of visual detail in the generated velocity fields.
 
 <img src=./images/CNN.png width="600" />
 
