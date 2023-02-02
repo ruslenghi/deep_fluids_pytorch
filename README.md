@@ -60,7 +60,7 @@ Run the following line to install required packages.
 
 ## Usage
 
-Run the following line to train the model, and save it in a file called "my_model.pt"
+Run the following line to train the model
 
     python main.py my_model
     
