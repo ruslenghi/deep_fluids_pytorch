@@ -14,8 +14,7 @@ The architecture's input consists of a vector *c* containing just three numbers:
 
 -The time elapsed since the source was activated
 
-Up-scalings and convolutions are performed on the input vector *c* to reconstruct the whole velocity field of the fluid. 
-The full CNN architecture structure is presented below.
+Up-scalings and convolutions are performed on the input vector *c* to reconstruct the whole velocity field of the fluid. Finally the curl operator is applied to ensure that the final output field is divergence free. The full CNN architecture structure is presented below.
 
 <img src=./images/CNN.png width="600" />
 
