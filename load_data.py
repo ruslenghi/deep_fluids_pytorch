@@ -8,13 +8,7 @@ def load_and_preprocess(my_list):
 
     print(os.path.dirname(os.path.realpath(__file__)))
 
-    directory = os.path.dirname(os.path.realpath(__file__)) + "\\" + config.DATASET
-
-    #Insert the directory containing the v folder, with the velocity fields
-    #if torch.cuda.is_available():
-    #    directory = '/cluster/home/ruslenghi/data/' + config.DATASET
-    #else:
-    #    directory = '/Users/Ricca/Desktop/data/' + config.DATASET
+    directory = os.path.dirname(os.path.realpath(__file__)) + "/" + config.DATASET
 
     physical_info,  smoke_images, to_load = [], [], []
     np.random.seed(1)
