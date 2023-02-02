@@ -20,6 +20,16 @@ Up-scalings and convolutions are performed on the input vector *c* to reconstruc
 
 ## Qualitative Improvements
 
+In the first column Ground Truth (GT) fields are presented.
+
+In the second column Baseline reconstructions, obtained via the vanilla implementation of Deep Fluids, are shown.
+
+In the third column Shift Towards Low reconstrictions are visible. These are the reconstructions obtained via a technique previously used to improve the velocity fields reconstruction, which is described in detail at: https://deepai.org/publication/frequency-aware-reconstruction-of-fluid-simulations-with-generative-networks
+
+In the fourth and fifth column reconstructions represent my results. In these cases the *c* vector was preprocessed via Positional Encoding (PE) combined with STL (fourth column) or Progressive Training (fifth column).
+
+It is clearly visible that Positional Encoding is a game changer, and that the reconstructed fields present much more details in the reconstructions presented in the last 2 columns, with the best results being those obtained via the combined use of Positional Encoding and Progressive Training.
+
 <img src=./images/Mixed_Fields.png width="600" />
 
 ## Quantitative Improvements
