@@ -52,11 +52,11 @@ On the right are displayed five histograms reporting the counts of different val
 
 ## Requirements
 
-This code is tested on Windows 10.
+This code is tested on Windows 10 and Mac OS.
 
 Run the following line to install packages.
 
-    pip install --upgrade torch numpy tqdm matplotlib Pillow imageio
+    pip install --upgrade torch torchvision tqdm matplotlib opencv-python tensorboard
 
 ## Usage
 
