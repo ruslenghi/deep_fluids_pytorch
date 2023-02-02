@@ -64,9 +64,11 @@ Run the following line to train the model, and save it in a file called "my_mode
 
     python main.py my_model
     
-Run the following line to reconstruct random dataset samples using the trained model
+Run the following line to reconstruct random dataset samples using the trained model.
     
     python print_fields.py my_model
+    
+After this, randomly selected reconstructions of dataset samples will be located in the "results" folder.
     
 ## Dataset
 
