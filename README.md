@@ -1,6 +1,3 @@
-
-## Description
-
 ## Requirements
 
 This code is tested on Windows 10 with the following requirements:
@@ -19,4 +16,6 @@ Run the following line to install packages.
     
     python print_fields.py my_model
 
-## Requirements
+## Description
+
+![improved_results_2](./images/improved_results_2.png)
