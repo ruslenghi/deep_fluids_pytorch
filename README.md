@@ -24,7 +24,7 @@ In the 1st column Ground Truth (GT) fields are presented.
 
 In the 2nd column Baseline reconstructions, obtained via the vanilla implementation of Deep Fluids, are shown.
 
-In the 3rd column STL (Shift Towards Low) reconstrictions are visible. These are the reconstructions obtained via a technique previously developed to improve Deep Fluids' ability to reconstruct fine grane details. This approach is described in detail at: https://deepai.org/publication/frequency-aware-reconstruction-of-fluid-simulations-with-generative-networks
+In the 3rd column STL (Shift Towards Low) reconstrictions are visible. These are the reconstructions obtained via a technique previously developed to improve Deep Fluids' ability to reconstruct fine grain details. This approach is described in detail at: https://deepai.org/publication/frequency-aware-reconstruction-of-fluid-simulations-with-generative-networks
 
 In the 4th and 5th column my results are shown. In these cases the *c* vector was preprocessed via Positional Encoding (PE) combined with STL (fourth column) or Progressive Training (fifth column).
 
