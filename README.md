@@ -18,4 +18,4 @@ Run the following line to install packages.
 
 ## Description
 
-![improved_results_2](./images/improved_results_2.png)
+![improved_results_2](./images/improved_results_2.PNG)
