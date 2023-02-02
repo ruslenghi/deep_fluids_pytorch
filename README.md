@@ -54,12 +54,25 @@ On the right are displayed five histograms reporting the counts of different val
 
 This code is tested on Windows 10 and Mac OS.
 
-Run the following line to install packages.
+Run the following line to install required packages.
 
     pip install --upgrade torch torchvision tqdm matplotlib opencv-python tensorboard
 
 ## Usage
 
+Run the following line to train the model, and save it in a file called "my_model.pt"
+
     python main.py my_model
     
+Run the following line to reconstruct random dataset samples using the trained model
+    
     python print_fields.py my_model
+    
+## Dataset
+
+In this repo a toy dataset called "super_reduced", which contains only 10 velocity fields, was loaded. Training the model for 240 epochs on this toy dataset using my Macbook Air 2021 takes around 3 minutes.
+
+The images and graphs shown in this README were however obtained by training the model on a dataset of 21000 velocity fields. 
+
+To train the model on larger datasets follow the prescriptions presented at: https://github.com/byungsook/deep-fluids.
+Then, save the obtained dataset in a sub-folder called "data", put it in the same folder as the load_data.py script, open the config.py file and change the DATASET value to "data". Then run the commands described at the Usage stage.
