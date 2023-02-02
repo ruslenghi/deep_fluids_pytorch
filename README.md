@@ -4,8 +4,6 @@ This project ports the existing Deep Fluids architecture: https://arxiv.org/abs/
 
 Major visual improvements are attained thanks to the use of Positional Encoding and Progressive Training: https://arxiv.org/abs/1710.10196. The final results largely outperform, both quantitatively and qualitatively, previous approaches which aimed at enhancing the same architecture: https://deepai.org/publication/frequency-aware-reconstruction-of-fluid-simulations-with-generative-networks
 
-## Dataset
-
 ## Architecture
 
 The architecture's input consists of a vector *c* containing just three numbers:
