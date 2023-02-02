@@ -19,3 +19,5 @@ Run the following line to install packages.
 ## Description
 
 ![improved_results_2](./images/improved_results_2.PNG)
+
+<img src=./images/improved_results_2.PNG width="200" />
