@@ -7,6 +7,10 @@ test test test
 
 <img src=./images/Mixed_Fields.png width="600" />
 
+test test test
+
+<img src=./images/stats.PNG width="600" />
+
 ## Requirements
 
 This code is tested on Windows 10 with the following requirements:
