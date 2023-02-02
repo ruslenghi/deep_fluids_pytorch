@@ -14,7 +14,7 @@ The architecture's input consists of a vector *c* containing just three numbers:
 
 -The time elapsed since the source was activated
 
-Up-scalings and convolutions are performed on the input vector *c* to reconstruct the whole velocity field of the fluid. Finally the curl operator is applied to ensure that the final output field is divergence free. The full CNN architecture structure is presented below.
+Up-scalings and convolutions are performed on the input vector *c* to reconstruct the whole velocity field of the fluid. Finally the curl operator is applied to ensure that the final output field is divergence free. The project focuses on reconstructing 2D velocity fields, but can be easily extended to higher dimensions. THe fields are visualized as images, with the x and y components of the velocity being associated respectively with colors magenta and green. The full CNN architecture structure is presented below.
 
 <p align="center">
     <img src=./images/CNN.png width="600" />
