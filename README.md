@@ -32,7 +32,7 @@ In the 2nd column Baseline reconstructions, obtained via the vanilla implementat
 
 In the 3rd column STL (Shift Towards Low) reconstrictions are visible. These are the reconstructions obtained via a technique previously developed to improve Deep Fluids' ability to reconstruct fine grain details. This approach is described at: https://deepai.org/publication/frequency-aware-reconstruction-of-fluid-simulations-with-generative-networks
 
-In the 4th and 5th column my results are shown. In these cases the *c* vector was preprocessed via Positional Encoding (PE) combined with STL (fourth column) or Progressive Training (fifth column).
+In the 4th and 5th column my results are shown. In these cases the *c* vector was preprocessed via Positional Encoding (PE) and the network was trained with STL (fourth column) or Progressive Training (fifth column).
 
 It is clearly visible that Positional Encoding is a game changer. The reconstructed fields of the 4th and 5th columns present much more details than both Baseline and STL, with the best results being those attained via the combined use of Positional Encoding and Progressive Training.
 
