@@ -20,7 +20,7 @@ if GRADIENT:
 else:
     LR_MIN = 2.5e-6
 
-DATASET = 'super_reduced'# smoke_pos21_size5_f200
+DATASET = 'super_reduced'
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 SAVE_MODEL = True
 LOAD_MODEL = False
