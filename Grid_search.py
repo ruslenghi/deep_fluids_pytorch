@@ -34,7 +34,7 @@ for i in range(2, 80):
 rings = torch.tensor(rings).to(config.DEVICE)
 
 counter = [i for i in range(len(rings))]
-randnums = np.random.randint(0, 200, 200) #CAMBIALOOOOOO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+randnums = np.random.randint(0, 200, 200)
 
 for i in range(64 + 1):
 
