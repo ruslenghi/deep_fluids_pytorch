@@ -1,24 +1,26 @@
-import torch
-import sys
 import glob
-import shutil
-import tqdm as tqdm
+import numpy as np
 import matplotlib.pyplot as plt
 
-from load_data import *
-from model import *
-from STL import *
-from utils import *
+def plot_gradients(input_folder='my_gradients', output_folder='my_gradients'):
+    
+    for np_name in glob.glob(f'{input_folder}/*'):
+        # Load the gradient data from the file
+        gradient_data = np.loadtxt(np_name)
+        epochs = list(range(len(gradient_data)))
 
+        # Plot the gradient data
+        plt.plot(epochs, gradient_data, c='r')
+        plt.xlabel('Epochs')
+        plt.ylabel('Gradient')
+        plt.title(np_name[len(input_folder)+1:])
+        
+        # Save the plot as a PNG image
+        output_file = f'{output_folder}/{np_name[len(input_folder)+1:]}_gradients.png'
+        plt.savefig(output_file, dpi=300)
+        plt.clf()
 
-for np_name in glob.glob('my_gradients/*'):
-    a = np.loadtxt(np_name)
-    x = [i for i in range(len(a))]
-    plt.plot(x, a, c='r')
-    plt.xlabel('Epochs')
-    plt.ylabel('Gradient')
-    plt.title(np_name[13:])
-    plt.savefig('my_gradients/' + np_name[13:] + '_gradients.png', dpi=300)
-    plt.clf()
+        print(f"Saved plot: {output_file}")
 
-
+if __name__ == "__main__":
+    plot_gradients()
