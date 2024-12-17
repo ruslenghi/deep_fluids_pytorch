@@ -18,8 +18,6 @@ model = Generator2d()
 my_model =  torch.load('my_models/' + filename + '.pt', map_location = device)
 my_model.eval()
 
-#Now we can start our Fourier thing
-
 my_bins = 100
 
 histo_reconstructed = np.zeros(my_bins)
@@ -40,8 +38,6 @@ for i in tqdm(range(100)):
     x_r = np.reshape(x_r, [2, 128, 96])
     gt = smoke_images[i]
 
-    #The differences you will notice in the graph will probably stem from this quite arbitrary choice
-    #To retrieve Simon's graph more precisely go and give a look at his code
     fft_x_r = np.abs(np.fft.fft2(x_r))
     fft_gt = np.abs(np.fft.fft2(gt))
 
@@ -51,8 +47,6 @@ for i in tqdm(range(100)):
     hist_gt = np.histogram(np.log(fft_gt), bins=my_bins, range=(-10,7), density=False)
     histo_true += hist_gt[0]
     x_axis = hist_x_r[1][1:]
-
-#np.savetxt('Baseline_log_magnitude.txt', histo_reconstructed)
 
 plt.plot(x_axis, histo_reconstructed, c='y', label='Baseline')
 plt.plot(x_axis, histo_true, c='r', label='Ground Truth')
